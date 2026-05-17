@@ -41,6 +41,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,20,16,0.9
 .hero-date{margin-top:1rem;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
 .hero-tagline{margin-top:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--mid);}
 
+/* COUNTDOWN */
+.countdown-label{margin-top:1.8rem;font-size:0.68rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--muted);text-align:center;}
+.countdown{display:flex;gap:0.5rem;margin-top:0.7rem;justify-content:center;flex-wrap:wrap;}
+.cd-box{background:white;border:1px solid #e8ddd0;border-radius:10px;padding:0.7rem 0.4rem;min-width:64px;text-align:center;box-shadow:0 2px 10px rgba(184,150,90,0.08);}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:400;color:var(--gold-dark);line-height:1;font-variant-numeric:tabular-nums;}
+.cd-label{font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-top:0.35rem;}
+.countdown-done{margin-top:1.8rem;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--gold-dark);text-align:center;}
+
 /* LANG */
 .lang-bar{display:flex;justify-content:center;gap:6px;margin-top:1.5rem;}
 .lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #ddd0c0;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.73rem;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;}
@@ -131,9 +139,18 @@ footer em{font-style:normal;color:var(--gold);}
       <span class="ornament">✦ &nbsp; ✦</span>
       <h1 id="h-n1">Apirathan</h1>
       <span class="ampersand">&amp;</span>
-      <h1><em id="h-n2">Suberja</em></h1>
+      <h1 id="h-n2">Suberja</h1>
       <div class="hero-date" id="h-date">29. Mai 2026</div>
       <div class="hero-tagline" id="h-tagline">„Ein neues Kapitel beginnt"</div>
+
+      <div class="countdown-label" id="cd-title">Bis zum grossen Tag</div>
+      <div class="countdown" id="countdown">
+        <div class="cd-box"><div class="cd-num" id="cd-d">0</div><div class="cd-label" id="cd-d-l">Tage</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-h">00</div><div class="cd-label" id="cd-h-l">Std</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-m">00</div><div class="cd-label" id="cd-m-l">Min</div></div>
+        <div class="cd-box"><div class="cd-num" id="cd-s">00</div><div class="cd-label" id="cd-s-l">Sek</div></div>
+      </div>
+
       <div class="lang-bar">
         <button class="lang-btn active" onclick="setLang('de')">DE</button>
         <button class="lang-btn" onclick="setLang('ta')">தமிழ்</button>
@@ -272,7 +289,8 @@ const TX = {
     phHint:'Teilt eure schönsten Momente mit Apirathan & Suberja! Einfach auf den Button tippen und Fotos hochladen.',
     phBtn:'Fotos hochladen →',phNoAcc:'Kein Dropbox-Konto nötig',
     phHow:"So einfach geht's",
-    s1:'QR scannen',s2:'Button tippen',s3:'Fotos wählen',s4:'Fertig! 🎉'
+    s1:'QR scannen',s2:'Button tippen',s3:'Fotos wählen',s4:'Fertig! 🎉',
+    cdTitle:'Bis zum grossen Tag',cdDays:'Tage',cdHours:'Std',cdMins:'Min',cdSecs:'Sek',cdDone:'Heute ist unser Tag ✦'
   },
   ta:{
     tagline:'"புதிய அத்தியாயம் தொடங்குகிறது"',
@@ -284,7 +302,8 @@ const TX = {
     phHint:'அபிரதன் & சுபேர்ஜாவுடன் உங்கள் அழகான தருணங்களை பகிரவும்! பொத்தானை அழுத்தி படங்களை பதிவேற்றவும்.',
     phBtn:'படங்கள் பதிவேற்றவும் →',phNoAcc:'Dropbox கணக்கு தேவையில்லை',
     phHow:'எப்படி செய்வது',
-    s1:'QR ஸ்கேன்',s2:'பொத்தான் அழுத்தவும்',s3:'படங்கள் தேர்வு',s4:'முடிந்தது! 🎉'
+    s1:'QR ஸ்கேன்',s2:'பொத்தான் அழுத்தவும்',s3:'படங்கள் தேர்வு',s4:'முடிந்தது! 🎉',
+    cdTitle:'பெரிய நாள் வரை',cdDays:'நாட்கள்',cdHours:'மணி',cdMins:'நிமி',cdSecs:'விநா',cdDone:'இன்று எங்கள் நாள் ✦'
   },
   en:{
     tagline:'"A new chapter begins"',
@@ -296,7 +315,8 @@ const TX = {
     phHint:'Share your favourite moments with Apirathan & Suberja! Tap the button and upload your photos directly.',
     phBtn:'Upload photos →',phNoAcc:'No Dropbox account needed',
     phHow:'How it works',
-    s1:'Scan QR code',s2:'Tap button',s3:'Choose photos',s4:'Done! 🎉'
+    s1:'Scan QR code',s2:'Tap button',s3:'Choose photos',s4:'Done! 🎉',
+    cdTitle:'Until the big day',cdDays:'Days',cdHours:'Hrs',cdMins:'Min',cdSecs:'Sec',cdDone:'Today is our day ✦'
   }
 };
 
@@ -328,8 +348,39 @@ function setLang(l){
   document.getElementById('s2').textContent=x.s2;
   document.getElementById('s3').textContent=x.s3;
   document.getElementById('s4').textContent=x.s4;
+  document.getElementById('cd-title').textContent=x.cdTitle;
+  document.getElementById('cd-d-l').textContent=x.cdDays;
+  document.getElementById('cd-h-l').textContent=x.cdHours;
+  document.getElementById('cd-m-l').textContent=x.cdMins;
+  document.getElementById('cd-s-l').textContent=x.cdSecs;
   renderTimeline();
 }
+
+/* COUNTDOWN — Hochzeit 29.05.2026, 16:45 Uhr (Schweizer Zeit) */
+const WEDDING_DATE = new Date('2026-05-29T16:45:00+02:00');
+function updateCountdown(){
+  const diff = WEDDING_DATE - new Date();
+  const cd = document.getElementById('countdown');
+  const title = document.getElementById('cd-title');
+  if(diff <= 0){
+    cd.innerHTML = '<div class="countdown-done">'+TX[lang].cdDone+'</div>';
+    title.style.display='none';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  const dEl=document.getElementById('cd-d');
+  if(dEl){
+    dEl.textContent = d;
+    document.getElementById('cd-h').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-s').textContent = String(s).padStart(2,'0');
+  }
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
 function renderTimeline(){
   const tl=document.getElementById('timeline');
