@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Apirathan & Suberja · 29.05.2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#b8965a;--gold-light:#f5ede0;--gold-dark:#8a6c3a;
+  --dark:#1a1410;--mid:#5a4a38;--muted:#9a8878;
+  --bg:#fdfaf6;--white:#ffffff;--radius:14px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);font-family:'DM Sans',sans-serif;color:var(--dark);min-height:100vh;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(26,20,16,0.95);backdrop-filter:blur(8px);padding:0 1.5rem;}
+.nav-inner{max-width:600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:56px;}
+.nav-logo{font-family:'Cormorant Garamond',serif;font-size:1rem;font-weight:300;color:var(--gold);letter-spacing:0.06em;white-space:nowrap;}
+.nav-links{display:flex;gap:4px;}
+.nav-btn{padding:6px 12px;border-radius:20px;border:none;background:transparent;color:rgba(255,255,255,0.5);font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;}
+.nav-btn.active,.nav-btn:hover{color:white;background:rgba(184,150,90,0.25);}
+.nav-btn.active{color:var(--gold);}
+
+/* PAGES */
+.page{display:none;min-height:100vh;padding-top:56px;}
+.page.active{display:block;}
+
+/* ── HOME PAGE ── */
+.hero{position:relative;min-height:calc(100vh - 56px);display:flex;flex-direction:column;}
+.hero-img{width:100%;height:65vw;max-height:480px;object-fit:cover;object-position:center 20%;}
+.hero-overlay{position:absolute;top:0;left:0;right:0;height:65vw;max-height:480px;background:linear-gradient(to bottom,rgba(26,20,16,0.15) 0%,rgba(26,20,16,0.45) 100%);}
+.hero-content{text-align:center;padding:2rem 1.5rem 3rem;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ornament{font-size:1rem;color:var(--gold);letter-spacing:0.3em;display:block;margin-bottom:0.8rem;opacity:0.7;}
+.hero-content h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,9vw,3.2rem);font-weight:300;color:var(--dark);letter-spacing:0.03em;line-height:1.1;}
+.hero-content h1 em{font-style:italic;color:var(--gold-dark);}
+.ampersand{font-family:'Cormorant Garamond',serif;font-size:clamp(1.5rem,5vw,2rem);font-weight:300;color:var(--gold);display:block;margin:0.15rem 0;}
+.hero-date{margin-top:1rem;font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--muted);}
+.hero-tagline{margin-top:0.6rem;font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--mid);}
+
+/* LANG */
+.lang-bar{display:flex;justify-content:center;gap:6px;margin-top:1.5rem;}
+.lang-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #ddd0c0;background:transparent;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:0.73rem;letter-spacing:0.08em;cursor:pointer;transition:all 0.2s;}
+.lang-btn.active{background:var(--gold);border-color:var(--gold);color:white;font-weight:500;}
+.lang-btn:hover:not(.active){border-color:var(--gold);color:var(--gold-dark);}
+
+.cta-row{display:flex;gap:10px;margin-top:1.8rem;flex-wrap:wrap;justify-content:center;}
+.cta-btn{padding:0.8rem 1.6rem;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:500;letter-spacing:0.06em;cursor:pointer;transition:all 0.2s;border:none;}
+.cta-primary{background:var(--dark);color:white;}
+.cta-primary:hover{background:var(--gold-dark);}
+.cta-secondary{background:transparent;color:var(--dark);border:1.5px solid #ddd0c0;}
+.cta-secondary:hover{border-color:var(--gold);color:var(--gold-dark);}
+
+/* ── PROGRAM PAGE ── */
+.inner-page{max-width:500px;margin:0 auto;padding:2.5rem 1.5rem 4rem;}
+.page-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:300;color:var(--dark);text-align:center;margin-bottom:0.4rem;}
+.page-title em{font-style:italic;color:var(--gold-dark);}
+.page-sub{text-align:center;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:2rem;}
+.timeline{position:relative;padding-left:2rem;}
+.timeline::before{content:'';position:absolute;left:0.6rem;top:6px;bottom:6px;width:1.5px;background:linear-gradient(to bottom,var(--gold),#ddd0c0);}
+.tl-item{position:relative;margin-bottom:1.5rem;}
+.tl-dot{position:absolute;left:-1.63rem;top:4px;width:10px;height:10px;border-radius:50%;background:var(--gold);border:2px solid var(--bg);}
+.tl-time{font-size:0.72rem;letter-spacing:0.1em;color:var(--gold-dark);font-weight:500;margin-bottom:2px;}
+.tl-event{font-size:0.95rem;color:var(--dark);font-weight:400;}
+.tl-desc{font-size:0.8rem;color:var(--muted);margin-top:2px;line-height:1.5;}
+
+.location-card{background:white;border-radius:var(--radius);padding:1.5rem;box-shadow:0 4px 20px rgba(26,20,16,0.07);margin-top:2rem;}
+.location-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem;}
+.location-name{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:400;color:var(--dark);margin-bottom:0.3rem;}
+.location-addr{font-size:0.82rem;color:var(--muted);line-height:1.5;}
+.map-btn{display:inline-flex;align-items:center;gap:6px;margin-top:0.8rem;padding:0.5rem 1rem;border:1.5px solid #ddd0c0;border-radius:6px;font-size:0.78rem;color:var(--gold-dark);text-decoration:none;font-family:'DM Sans',sans-serif;transition:all 0.2s;}
+.map-btn:hover{border-color:var(--gold);background:var(--gold-light);}
+
+/* ── UPLOAD PAGE ── */
+.upload-card{background:white;border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:0 8px 40px rgba(26,20,16,0.1);margin-bottom:1.2rem;}
+.hint-box{background:var(--gold-light);border-radius:10px;padding:0.9rem 1rem;font-size:0.84rem;color:var(--mid);line-height:1.65;text-align:center;margin-bottom:1.3rem;}
+.dropbox-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:1.1rem 1.5rem;background:var(--dark);color:white;border:none;border-radius:10px;font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:500;letter-spacing:0.04em;cursor:pointer;transition:background 0.2s;text-decoration:none;}
+.dropbox-btn:hover{background:var(--gold-dark);}
+.dropbox-btn svg{width:20px;height:20px;stroke:white;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;}
+.no-account{text-align:center;font-size:0.74rem;color:var(--muted);margin-top:0.7rem;}
+.steps-card{background:white;border-radius:var(--radius);padding:1.5rem;box-shadow:0 4px 20px rgba(26,20,16,0.07);}
+.i-title{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--muted);letter-spacing:0.05em;margin-bottom:1.1rem;text-align:center;}
+.steps{display:flex;gap:0;}
+.step{flex:1;text-align:center;position:relative;padding:0 0.2rem;}
+.step::after{content:'';position:absolute;top:15px;left:55%;right:-45%;height:1.5px;background:#e8ddd0;}
+.step:last-child::after{display:none;}
+.step-num{width:30px;height:30px;border-radius:50%;background:var(--gold-light);color:var(--gold-dark);font-size:0.78rem;font-weight:500;display:flex;align-items:center;justify-content:center;margin:0 auto 0.5rem;position:relative;z-index:1;border:1.5px solid var(--gold);}
+.step p{font-size:0.67rem;color:var(--muted);line-height:1.4;}
+
+/* ── IMPRESSUM ── */
+.impressum-box{background:white;border-radius:var(--radius);padding:2rem 1.5rem;box-shadow:0 4px 20px rgba(26,20,16,0.07);}
+.imp-section{margin-bottom:1.5rem;}
+.imp-section:last-child{margin-bottom:0;}
+.imp-label{font-size:0.7rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--gold-dark);margin-bottom:0.4rem;font-weight:500;}
+.imp-text{font-size:0.88rem;color:var(--mid);line-height:1.7;}
+.imp-text a{color:var(--gold-dark);text-decoration:none;}
+
+/* DIVIDER */
+.section-div{height:1px;background:linear-gradient(to right,transparent,#e8ddd0,transparent);margin:2rem 0;}
+
+footer{text-align:center;padding:2rem 1rem;font-size:0.72rem;color:var(--muted);letter-spacing:0.06em;}
+footer em{font-style:normal;color:var(--gold);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.page.active .inner-page,.page.active .hero{animation:fadeUp 0.4s ease both;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">A &amp; S · 29.05.2026</div>
+    <div class="nav-links">
+      <button class="nav-btn active" onclick="showPage('home')" id="nav-home">Home</button>
+      <button class="nav-btn" onclick="showPage('program')" id="nav-program">Programm</button>
+      <button class="nav-btn" onclick="showPage('photos')" id="nav-photos">Fotos</button>
+      <button class="nav-btn" onclick="showPage('impressum')" id="nav-impressum">Info</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <img class="hero-img" src="data:image/jpeg;base64,PHOTO_PLACEHOLDER" alt="Apirathan & Suberja">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="ornament">✦ &nbsp; ✦</span>
+      <h1 id="h-n1">Apirathan</h1>
+      <span class="ampersand">&amp;</span>
+      <h1><em id="h-n2">Suberja</em></h1>
+      <div class="hero-date" id="h-date">29. Mai 2026</div>
+      <div class="hero-tagline" id="h-tagline">„Ein neues Kapitel beginnt"</div>
+      <div class="lang-bar">
+        <button class="lang-btn active" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" onclick="setLang('ta')">தமிழ்</button>
+        <button class="lang-btn" onclick="setLang('en')">EN</button>
+      </div>
+      <div class="cta-row">
+        <button class="cta-btn cta-primary" onclick="showPage('photos')" id="cta-photos">📷 Fotos hochladen</button>
+        <button class="cta-btn cta-secondary" onclick="showPage('program')" id="cta-program">Programm ansehen</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROGRAM -->
+<div class="page" id="page-program">
+  <div class="inner-page">
+    <h2 class="page-title" id="prog-title">Programm <em id="prog-date">29. Mai 2026</em></h2>
+    <p class="page-sub" id="prog-sub">Hall 111 · Gretzenbach</p>
+
+    <div class="timeline" id="timeline"></div>
+
+    <div class="location-card">
+      <div class="location-label" id="loc-label">Festlocation</div>
+      <div class="location-name">Hall 111</div>
+      <div class="location-addr">Im Grund 5<br>5014 Gretzenbach, Schweiz</div>
+      <a class="map-btn" href="https://maps.google.com/?q=Im+Grund+5,+5014+Gretzenbach" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span id="map-btn-text">Google Maps öffnen</span>
+      </a>
+    </div>
+
+    <footer><em>Apirathan &amp; Suberja</em> · 29.05.2026</footer>
+  </div>
+</div>
+
+<!-- PHOTOS -->
+<div class="page" id="page-photos">
+  <div class="inner-page">
+    <h2 class="page-title" id="ph-title">Eure <em>Fotos</em></h2>
+    <p class="page-sub" id="ph-sub">Teilt eure schönsten Momente</p>
+
+    <div class="upload-card">
+      <div class="hint-box" id="ph-hint"></div>
+      <a class="dropbox-btn" href="https://www.dropbox.com/request/a0pafuymrvojc2qkgmjx" target="_blank">
+        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span id="ph-btn"></span>
+      </a>
+      <p class="no-account" id="ph-noacc"></p>
+    </div>
+
+    <div class="steps-card">
+      <div class="i-title" id="ph-how"></div>
+      <div class="steps">
+        <div class="step"><div class="step-num">1</div><p id="s1"></p></div>
+        <div class="step"><div class="step-num">2</div><p id="s2"></p></div>
+        <div class="step"><div class="step-num">3</div><p id="s3"></p></div>
+        <div class="step"><div class="step-num">4</div><p id="s4"></p></div>
+      </div>
+    </div>
+
+    <footer><em>Apirathan &amp; Suberja</em> · 29.05.2026</footer>
+  </div>
+</div>
+
+<!-- IMPRESSUM -->
+<div class="page" id="page-impressum">
+  <div class="inner-page">
+    <h2 class="page-title">Info &amp; <em>Impressum</em></h2>
+    <div class="page-sub">HABB Switzerland</div>
+
+    <div class="impressum-box">
+      <div class="imp-section">
+        <div class="imp-label">Verantwortlich</div>
+        <div class="imp-text">HABB Switzerland<br>Schweiz</div>
+      </div>
+      <div class="section-div"></div>
+      <div class="imp-section">
+        <div class="imp-label">Webseite</div>
+        <div class="imp-text">Diese Webseite wurde für die Hochzeit von Apirathan &amp; Suberja am 29. Mai 2026 erstellt.<br><br>Fotos werden direkt in einem privaten Dropbox-Ordner gespeichert und nicht öffentlich zugänglich gemacht.</div>
+      </div>
+      <div class="section-div"></div>
+      <div class="imp-section">
+        <div class="imp-label">Datenschutz</div>
+        <div class="imp-text">Hochgeladene Fotos werden ausschliesslich für private Zwecke des Brautpaares gespeichert. Es werden keine personenbezogenen Daten ohne Einwilligung weitergegeben.</div>
+      </div>
+      <div class="section-div"></div>
+      <div class="imp-section">
+        <div class="imp-label">Location</div>
+        <div class="imp-text">Hall 111<br>Im Grund 5<br>5014 Gretzenbach, Schweiz</div>
+      </div>
+    </div>
+
+    <footer><em>Apirathan &amp; Suberja</em> · 29.05.2026</footer>
+  </div>
+</div>
+
+<script>
+const PROGRAM = {
+  de:[
+    {time:'16:45',event:'Einzug Bräutigam',desc:'Feierlicher Einzug von Apirathan'},
+    {time:'17:45',event:'Einzug Braut',desc:'Feierlicher Einzug von Suberja'},
+    {time:'18:30',event:'Koorai Wechsel',desc:'Traditioneller Sari-Wechsel'},
+    {time:'19:15',event:'2. Einzug Braut',desc:'Suberja im zweiten Gewand'},
+    {time:'19:30',event:'Tie the Knot',desc:'Die Zeremonie der Verbindung'},
+    {time:'19:45',event:'Aruharisi',desc:'Traditioneller Reissegen'},
+    {time:'20:00',event:'Dinner',desc:'Gemeinsames Festessen'},
+  ],
+  ta:[
+    {time:'16:45',event:'மணமகன் வரவேற்பு',desc:'அபிரதனின் பவ்யமான வரவேற்பு'},
+    {time:'17:45',event:'மணமகள் வரவேற்பு',desc:'சுபேர்ஜாவின் பவ்யமான வரவேற்பு'},
+    {time:'18:30',event:'கூரை மாற்றம்',desc:'பாரம்பரிய சேலை மாற்றம்'},
+    {time:'19:15',event:'மணமகளின் 2வது வரவு',desc:'சுபேர்ஜாவின் இரண்டாம் ஆடை'},
+    {time:'19:30',event:'தாலி கட்டுதல்',desc:'திருமண சடங்கு'},
+    {time:'19:45',event:'அக்ஷதை',desc:'அரிசி ஆசீர்வாதம்'},
+    {time:'20:00',event:'விருந்து',desc:'பொது விருந்து'},
+  ],
+  en:[
+    {time:'16:45',event:'Entrance Groom',desc:'Grand entrance of Apirathan'},
+    {time:'17:45',event:'Entrance Bride',desc:'Grand entrance of Suberja'},
+    {time:'18:30',event:'Koorai Change',desc:'Traditional saree change ceremony'},
+    {time:'19:15',event:'Bride 2nd Entry',desc:'Suberja in second attire'},
+    {time:'19:30',event:'Tie the Knot',desc:'The binding ceremony'},
+    {time:'19:45',event:'Aruharisi',desc:'Traditional rice blessing'},
+    {time:'20:00',event:'Dinner',desc:'Celebratory dinner together'},
+  ]
+};
+
+const TX = {
+  de:{
+    tagline:'"Ein neues Kapitel beginnt"',
+    ctaPhotos:'📷 Fotos hochladen',ctaProgram:'Programm ansehen',
+    navHome:'Home',navProgram:'Programm',navPhotos:'Fotos',navInfo:'Info',
+    progTitle:'Programm',progDate:'29. Mai 2026',progSub:'Hall 111 · Gretzenbach',
+    locLabel:'Festlocation',mapBtn:'Google Maps öffnen',
+    phTitle:'Eure',phTitleEm:'Fotos',phSub:'Teilt eure schönsten Momente',
+    phHint:'Teilt eure schönsten Momente mit Apirathan & Suberja! Einfach auf den Button tippen und Fotos hochladen.',
+    phBtn:'Fotos hochladen →',phNoAcc:'Kein Dropbox-Konto nötig',
+    phHow:"So einfach geht's",
+    s1:'QR scannen',s2:'Button tippen',s3:'Fotos wählen',s4:'Fertig! 🎉'
+  },
+  ta:{
+    tagline:'"புதிய அத்தியாயம் தொடங்குகிறது"',
+    ctaPhotos:'📷 படங்கள் பதிவேற்றவும்',ctaProgram:'நிகழ்ச்சி நிரல்',
+    navHome:'முகப்பு',navProgram:'நிகழ்ச்சி',navPhotos:'படங்கள்',navInfo:'தகவல்',
+    progTitle:'நிகழ்ச்சி நிரல்',progDate:'29 மே 2026',progSub:'Hall 111 · Gretzenbach',
+    locLabel:'திருமண மண்டபம்',mapBtn:'வரைபடம் திறக்கவும்',
+    phTitle:'உங்கள்',phTitleEm:'புகைப்படங்கள்',phSub:'அழகான தருணங்களை பகிரவும்',
+    phHint:'அபிரதன் & சுபேர்ஜாவுடன் உங்கள் அழகான தருணங்களை பகிரவும்! பொத்தானை அழுத்தி படங்களை பதிவேற்றவும்.',
+    phBtn:'படங்கள் பதிவேற்றவும் →',phNoAcc:'Dropbox கணக்கு தேவையில்லை',
+    phHow:'எப்படி செய்வது',
+    s1:'QR ஸ்கேன்',s2:'பொத்தான் அழுத்தவும்',s3:'படங்கள் தேர்வு',s4:'முடிந்தது! 🎉'
+  },
+  en:{
+    tagline:'"A new chapter begins"',
+    ctaPhotos:'📷 Upload photos',ctaProgram:'View program',
+    navHome:'Home',navProgram:'Program',navPhotos:'Photos',navInfo:'Info',
+    progTitle:'Program',progDate:'29 May 2026',progSub:'Hall 111 · Gretzenbach',
+    locLabel:'Venue',mapBtn:'Open Google Maps',
+    phTitle:'Your',phTitleEm:'Photos',phSub:'Share your favourite moments',
+    phHint:'Share your favourite moments with Apirathan & Suberja! Tap the button and upload your photos directly.',
+    phBtn:'Upload photos →',phNoAcc:'No Dropbox account needed',
+    phHow:'How it works',
+    s1:'Scan QR code',s2:'Tap button',s3:'Choose photos',s4:'Done! 🎉'
+  }
+};
+
+let lang='de';
+
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',
+    b.textContent.trim()===(l==='de'?'DE':l==='ta'?'தமிழ்':'EN')));
+  const x=TX[l];
+  document.getElementById('h-tagline').textContent=x.tagline;
+  document.getElementById('cta-photos').textContent=x.ctaPhotos;
+  document.getElementById('cta-program').textContent=x.ctaProgram;
+  document.getElementById('nav-home').textContent=x.navHome;
+  document.getElementById('nav-program').textContent=x.navProgram;
+  document.getElementById('nav-photos').textContent=x.navPhotos;
+  document.getElementById('nav-impressum').textContent=x.navInfo;
+  document.getElementById('prog-title').innerHTML=x.progTitle+' <em id="prog-date">'+x.progDate+'</em>';
+  document.getElementById('prog-sub').textContent=x.progSub;
+  document.getElementById('loc-label').textContent=x.locLabel;
+  document.getElementById('map-btn-text').textContent=x.mapBtn;
+  document.getElementById('ph-title').textContent=x.phTitle;
+  document.getElementById('ph-sub').textContent=x.phSub;
+  document.getElementById('ph-hint').textContent=x.phHint;
+  document.getElementById('ph-btn').textContent=x.phBtn;
+  document.getElementById('ph-noacc').textContent=x.phNoAcc;
+  document.getElementById('ph-how').textContent=x.phHow;
+  document.getElementById('s1').textContent=x.s1;
+  document.getElementById('s2').textContent=x.s2;
+  document.getElementById('s3').textContent=x.s3;
+  document.getElementById('s4').textContent=x.s4;
+  renderTimeline();
+}
+
+function renderTimeline(){
+  const tl=document.getElementById('timeline');
+  tl.innerHTML='';
+  PROGRAM[lang].forEach(item=>{
+    const div=document.createElement('div');
+    div.className='tl-item';
+    div.innerHTML='<div class="tl-dot"></div><div class="tl-time">'+item.time+'</div><div class="tl-event">'+item.event+'</div><div class="tl-desc">'+item.desc+'</div>';
+    tl.appendChild(div);
+  });
+}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.getElementById('nav-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+setLang('de');
+</script>
+</body>
+</html>
